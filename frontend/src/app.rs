@@ -1,11 +1,8 @@
 use leptos::*;
 use leptos_router::*;
 
-mod components;
-mod pages;
-
-use components::{Footer, Header};
-use pages::{AboutPage, ContactPage, HomePage};
+use crate::components::{Footer, Header};
+use crate::pages::{AboutPage, ContactPage, HomePage};
 
 #[component]
 pub fn App() -> impl IntoView {
