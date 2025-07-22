@@ -3,32 +3,153 @@ use leptos_router::*;
 
 #[component]
 pub fn Header() -> impl IntoView {
+    // Signal for mobile menu open/close state
+    let (menu_open, set_menu_open) = create_signal(false);
+
+    // Get current location for active page highlighting
+    let location = use_location();
+    let pathname = move || location.pathname.get();
+
+    // Helper function to determine if a link is active
+    let is_active = move |path: &str| pathname() == path;
+
     view! {
-        <header class="site-header">
-            <nav class="navigation">
-                <div class="nav-brand">
-                    <A href="/" class="logo">
-                        "Open Freedom Project"
-                    </A>
+        <header class="block-header">
+            <div class="block-header-layout-desktop">
+                <A href="/" class="block-header-logo block-header__logo">
+                    <img
+                        src="/images/logo2.png"
+                        alt="Open Freedom Project"
+                        class="block-header-logo__image"
+                    />
+                </A>
+
+                <nav class="block-header__nav">
+                    <ul class="block-header__nav-links">
+                        <li class="block-header-item">
+                            <div class=move || if is_active("/") {
+                                "item-content-wrapper item-content-wrapper--active block-header-item__item"
+                            } else {
+                                "item-content-wrapper block-header-item__item"
+                            }>
+                                <A href="/" class="item-content">
+                                    "Home"
+                                </A>
+                            </div>
+                        </li>
+                        <li class="block-header-item">
+                            <div class=move || if is_active("/about") {
+                                "item-content-wrapper item-content-wrapper--active block-header-item__item"
+                            } else {
+                                "item-content-wrapper block-header-item__item"
+                            }>
+                                <A href="/about" class="item-content">
+                                    "About"
+                                </A>
+                            </div>
+                        </li>
+                        <li class="block-header-item">
+                            <div class=move || if is_active("/support") {
+                                "item-content-wrapper item-content-wrapper--active block-header-item__item"
+                            } else {
+                                "item-content-wrapper block-header-item__item"
+                            }>
+                                <A href="/support" class="item-content">
+                                    "Support"
+                                </A>
+                            </div>
+                        </li>
+                        <li class="block-header-item">
+                            <div class=move || if is_active("/contact") {
+                                "item-content-wrapper item-content-wrapper--active block-header-item__item"
+                            } else {
+                                "item-content-wrapper block-header-item__item"
+                            }>
+                                <A href="/contact" class="item-content">
+                                    "Contact"
+                                </A>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            // Mobile layout
+            <div class="block-header-layout-mobile">
+                <A href="/" class="block-header-logo block-header__logo">
+                    <img
+                        src="/images/logo2.png"
+                        alt="Open Freedom Project"
+                        class="block-header-logo__image"
+                    />
+                </A>
+
+                <button
+                    type="button"
+                    class="burger block-header__hamburger-menu"
+                    title="Menu"
+                    on:click=move |_| set_menu_open.set(!menu_open.get())
+                >
+                    <span class="burger__bun"></span>
+                    <span class="burger__meat"></span>
+                    <span class="burger__bun"></span>
+                </button>
+
+                <div class=move || if menu_open.get() {
+                    "block-header-layout-mobile__dropdown block-header-layout-mobile__dropdown--open block-header-layout-mobile__dropdown--link-align-right"
+                } else {
+                    "block-header-layout-mobile__dropdown block-header-layout-mobile__dropdown--link-align-right"
+                }>
+                    <nav class="block-header__nav">
+                        <ul class="block-header__nav-links">
+                            <li class="block-header-item">
+                                <div class=move || if is_active("/") {
+                                    "item-content-wrapper item-content-wrapper--active block-header-item__item"
+                                } else {
+                                    "item-content-wrapper block-header-item__item"
+                                }>
+                                    <A href="/" class="item-content" on:click=move |_| set_menu_open.set(false)>
+                                        "Home"
+                                    </A>
+                                </div>
+                            </li>
+                            <li class="block-header-item">
+                                <div class=move || if is_active("/about") {
+                                    "item-content-wrapper item-content-wrapper--active block-header-item__item"
+                                } else {
+                                    "item-content-wrapper block-header-item__item"
+                                }>
+                                    <A href="/about" class="item-content" on:click=move |_| set_menu_open.set(false)>
+                                        "About"
+                                    </A>
+                                </div>
+                            </li>
+                            <li class="block-header-item">
+                                <div class=move || if is_active("/support") {
+                                    "item-content-wrapper item-content-wrapper--active block-header-item__item"
+                                } else {
+                                    "item-content-wrapper block-header-item__item"
+                                }>
+                                    <A href="/support" class="item-content" on:click=move |_| set_menu_open.set(false)>
+                                        "Support"
+                                    </A>
+                                </div>
+                            </li>
+                            <li class="block-header-item">
+                                <div class=move || if is_active("/contact") {
+                                    "item-content-wrapper item-content-wrapper--active block-header-item__item"
+                                } else {
+                                    "item-content-wrapper block-header-item__item"
+                                }>
+                                    <A href="/contact" class="item-content" on:click=move |_| set_menu_open.set(false)>
+                                        "Contact"
+                                    </A>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                <ul class="nav-links">
-                    <li>
-                        <A href="/" class="nav-link">
-                            "Home"
-                        </A>
-                    </li>
-                    <li>
-                        <A href="/about" class="nav-link">
-                            "About"
-                        </A>
-                    </li>
-                    <li>
-                        <A href="/contact" class="nav-link">
-                            "Contact"
-                        </A>
-                    </li>
-                </ul>
-            </nav>
+            </div>
         </header>
     }
 }
