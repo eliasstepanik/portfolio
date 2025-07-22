@@ -1,0 +1,8 @@
+/target
+Cargo.lock
+.idea
+.envrc
+/.claude/*
+PLANNING.md
+CLAUDE.md
+.mcp.json
