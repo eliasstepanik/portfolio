@@ -10,24 +10,31 @@ preflight:
 build: preflight           # run depends on a clean preflight
     cargo build --workspace
 
+# Run the web application in development mode
 run:
-    cargo run -p game
+    cd frontend && trunk serve --open
 
-# Build with editor feature enabled
-build-editor:
-    cargo build -p game --features editor
+# Development server without opening browser
+serve:
+    cd frontend && trunk serve
 
-# Run with editor feature enabled
-run-editor:
-    cargo run -p game --features editor
+# Build for production
+build-web:
+    cd frontend && trunk build --release
 
-# Build without editor (production build)
-build-prod:
-    cargo build -p game --release --no-default-features
+# Build and serve production build locally
+serve-prod: build-web
+    cd frontend/dist && python3 -m http.server 8000
 
-# Run without editor (production mode)
-run-prod:
-    cargo run -p game --release --no-default-features
+# Clean build artifacts
+clean:
+    cargo clean
+    rm -rf frontend/dist
+
+# Install required tools
+install-tools:
+    cargo install trunk
+    rustup target add wasm32-unknown-unknown
 
 # Roll back to a stable release tag and rebuild
 rollback tag:
