@@ -1,10 +1,15 @@
 use leptos::*;
 use leptos_router::*;
+use web_sys::window;
+use wasm_bindgen::JsCast;
 
 #[component]
 pub fn Header() -> impl IntoView {
     // Signal for mobile menu open/close state
     let (menu_open, set_menu_open) = create_signal(false);
+    
+    // Signal for header scroll state
+    let (scrolled, set_scrolled) = create_signal(false);
 
     // Get current location for active page highlighting
     let location = use_location();
@@ -13,12 +18,41 @@ pub fn Header() -> impl IntoView {
     // Helper function to determine if a link is active
     let is_active = move |path: &str| pathname() == path;
 
+    // Set up scroll listener
+    create_effect(move |_| {
+        let handle_scroll = move || {
+            if let Some(win) = window() {
+                let scroll_y = win.scroll_y().unwrap_or(0.0);
+                set_scrolled.set(scroll_y > 50.0);
+            }
+        };
+
+        // Initial check
+        handle_scroll();
+
+        // Add scroll listener
+        if let Some(win) = window() {
+            let closure = wasm_bindgen::closure::Closure::wrap(Box::new(move |_: web_sys::Event| {
+                handle_scroll();
+            }) as Box<dyn FnMut(_)>);
+            
+            let _ = win.add_event_listener_with_callback("scroll", closure.as_ref().unchecked_ref());
+            closure.forget();
+        }
+    });
+
     view! {
-        <header class="block-header">
+        <header class=move || {
+            if scrolled.get() {
+                "block-header block-header--scrolled"
+            } else {
+                "block-header"
+            }
+        }>
             <div class="block-header-layout-desktop">
                 <A href="/" class="block-header-logo block-header__logo">
                     <img
-                        src="/images/logo2.png"
+                        src="/public/images/logo2.png"
                         alt="Open Freedom Project"
                         class="block-header-logo__image"
                     />
@@ -78,7 +112,7 @@ pub fn Header() -> impl IntoView {
             <div class="block-header-layout-mobile">
                 <A href="/" class="block-header-logo block-header__logo">
                     <img
-                        src="/images/logo2.png"
+                        src="/public/images/logo2.png"
                         alt="Open Freedom Project"
                         class="block-header-logo__image"
                     />

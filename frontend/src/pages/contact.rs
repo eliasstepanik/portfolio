@@ -115,33 +115,29 @@ pub fn ContactPage() -> impl IntoView {
     view! {
         <div class="page contact-page">
             <section class="block block--desktop-first-visible block--mobile-first-visible">
-                <div class="block-background">
+                <div class="block-background block-background--fixed">
                     <img
-                        src="/images/hero-contact.jpg"
-                        alt="person holding brown tree trunk"
-                        class="block-background__image"
+                        src="/public/images/hero-contact.jpg"
+                        alt="Contact Open Freedom Project"
+                        class="block-background__image block-background__image--fixed"
                     />
-                    <div class="block-background__overlay" style="opacity: 0.20;"></div>
+                    <div class="block-background__overlay block-background__overlay--fixed"></div>
                 </div>
 
                 <div class="block-layout-container">
-                    <div class="block-layout contact-layout">
-                        <div class="layout-element contact-title">
-                            <div class="text-box">
-                                <h2 class="text-white">"Contact us"</h2>
-                            </div>
+                    <div class="hero-layout">
+                        <div class="hero-title">
+                            <h1 class="text-white">"Contact us"</h1>
                         </div>
 
-                        <div class="layout-element contact-intro">
-                            <div class="text-box">
-                                <h3 class="text-white">"You have feedback, ideas, or questions?"</h3>
-                                <p class="body-large text-white">
-                                    "We are excited to hear from you. Feel free to send us a message and we will come back to you as soon as possible."
-                                </p>
-                            </div>
+                        <div class="hero-subtitle">
+                            <h3 class="text-white">"You have feedback, ideas, or questions?"</h3>
+                            <p class="text-white" style="margin-top: 1rem;">
+                                "We are excited to hear from you. Feel free to send us a message and we will come back to you as soon as possible."
+                            </p>
                         </div>
 
-                        <div class="layout-element contact-form-wrapper">
+                        <div class="contact-form-container" style="margin-top: 3rem;">
                             <form class="form contact-form" on:submit=on_submit>
                                 <div class="form__control">
                                     // Email field

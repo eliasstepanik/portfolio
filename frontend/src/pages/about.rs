@@ -6,149 +6,123 @@ pub fn AboutPage() -> impl IntoView {
         <div class="page about-page">
             // Hero Section
             <section class="block block--desktop-first-visible block--mobile-first-visible">
-                <div class="block-background">
+                <div class="block-background block-background--fixed">
                     <img
-                        src="/images/hero-about.jpg"
-                        alt="waterfall in forest"
-                        class="block-background__image"
+                        src="/public/images/hero-about.jpg"
+                        alt="Open Freedom Project - About Us"
+                        class="block-background__image block-background__image--fixed"
                     />
-                    <div class="block-background__overlay"></div>
+                    <div class="block-background__overlay block-background__overlay--fixed"></div>
                 </div>
 
                 <div class="block-layout-container">
-                    <div class="block-layout about-hero-layout">
-                        <div class="layout-element text-center">
-                            <div class="text-box">
-                                <h1 class="text-white">"Get to know us"</h1>
-                            </div>
+                    <div class="hero-layout">
+                        <div class="hero-title">
+                            <h1 class="text-white">"Get to know us"</h1>
                         </div>
 
-                        <div class="layout-element text-center">
-                            <div class="text-box">
-                                <p class="body-large text-white">
-                                    "We're a small, independent project committed to making essential ideas freely available — without ads, paywalls, or noise."
-                                </p>
-                                <br />
-                                <p class="body-large text-white">
-                                    "At the heart of our work is a simple practice: read important texts out loud, as they are, and make them accessible to anyone who wants to listen. Nothing added. Nothing sold."
-                                </p>
-                            </div>
+                        <div class="hero-subtitle">
+                            <p class="text-white">
+                                "We're a small, independent project committed to making essential ideas freely available — without ads, paywalls, or noise."
+                            </p>
+                            <p class="text-white" style="margin-top: 1rem;">
+                                "At the heart of our work is a simple practice: read important texts out loud, as they are, and make them accessible to anyone who wants to listen. Nothing added. Nothing sold."
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
 
             // Mission and Vision Section
-            <section class="block section">
-                <div class="block-background">
-                    // White background
-                </div>
-
+            <section class="section">
                 <div class="block-layout-container">
-                    <div class="block-layout mission-vision-layout">
-                        <div class="layout-element mission-section">
-                            <div class="text-box">
-                                <h2>"Our Mission"</h2>
-                                <p class="body-large">
-                                    "To make objective knowledge about internal and external freedom freely accessible to everyone — through readings of public-domain and openly licensed texts — using transparent, donation-based, and ad-free technology"
-                                </p>
-                            </div>
+                    <div class="mission-vision-layout">
+                        <div class="mission-box">
+                            <h2>"Our Mission"</h2>
+                            <p>
+                                "To make objective knowledge about internal and external freedom freely accessible to everyone — through readings of public-domain and openly licensed texts — using transparent, donation-based, and ad-free technology"
+                            </p>
                         </div>
 
-                        <div class="layout-element vision-section">
-                            <div class="text-box">
-                                <h2>"Our Vision"</h2>
-                                <ul class="vision-list">
-                                    <li>"A culture where knowledge flows freely, not behind gates."</li>
-                                    <li>"Where understanding — not opinion — shapes conversation."</li>
-                                    <li>"Where people give because they care, not because they're sold to."</li>
-                                    <li>"Where clarity is a common good, not a luxury."</li>
-                                </ul>
-                            </div>
+                        <div class="vision-box">
+                            <h2>"Our Vision"</h2>
+                            <ul class="vision-list">
+                                <li>"A culture where knowledge flows freely, not behind gates."</li>
+                                <li>"Where understanding — not opinion — shapes conversation."</li>
+                                <li>"Where people give because they care, not because they're sold to."</li>
+                                <li>"Where clarity is a common good, not a luxury."</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </section>
 
             // Philosophy Section
-            <section class="block section philosophy-section">
+            <section class="philosophy-section">
                 <div class="block-background">
                     <img
-                        src="/images/philosophy-bg.jpg"
-                        alt="man standing on fence overlooking mountain range"
+                        src="/public/images/philosophy-bg.jpg"
+                        alt="Philosophy background"
                         class="block-background__image"
                     />
                     <div class="block-background__overlay"></div>
                 </div>
 
                 <div class="block-layout-container">
-                    <div class="block-layout philosophy-layout">
-                        <div class="layout-element text-center">
-                            <div class="text-box">
-                                <h2 class="text-white">"Our Philosophy"</h2>
-                                <p class="body-large text-white">
-                                    "We believe that genuine freedom begins with clarity — not just of thought, but of mind, ethics, and action."
+                    <div class="philosophy-container">
+                        <div class="section-title">
+                            <h2 class="text-white">"Our Philosophy"</h2>
+                            <p class="text-white" style="font-size: 1.25rem; margin-top: 1rem;">
+                                "We believe that genuine freedom begins with clarity — not just of thought, but of mind, ethics, and action."
+                            </p>
+                            <p class="text-white" style="margin-top: 2rem;">
+                                "We grounded this project in 5 ideas:"
+                            </p>
+                        </div>
+
+                        <div class="philosophy-grid">
+                            <div class="philosophy-item">
+                                <h4>"1. Inner Freedom"</h4>
+                                <p>
+                                    "Freedom from confusion, suffering, reactivity — is possible through direct understanding, not belief."
                                 </p>
-                                <p class="text-white philosophy-subtitle">
-                                    "We grounded this project in 5 ideas:"
+                            </div>
+
+                            <div class="philosophy-item">
+                                <h4>"2. Outer Freedom"</h4>
+                                <p>
+                                    "Freedom from oppression, domination, and structural harm — depends on knowledge, critical thought, and collective awareness."
+                                </p>
+                            </div>
+
+                            <div class="philosophy-item">
+                                <h4>"3. Generosity Is Viable"</h4>
+                                <p>
+                                    "We reject manipulation, monetization, and control in favor of voluntary support and trust."
+                                </p>
+                            </div>
+
+                            <div class="philosophy-item">
+                                <h4>"4. Technology Can Serve Liberation"</h4>
+                                <p>
+                                    "When used with care, transparency, and ethical intention."
+                                </p>
+                            </div>
+
+                            <div class="philosophy-item">
+                                <h4>"5. Truth Should Be Free"</h4>
+                                <p>
+                                    "Not hidden behind paywalls, status, or ideology."
                                 </p>
                             </div>
                         </div>
 
-                        <div class="layout-element philosophy-grid">
-                            <div class="philosophy-item">
-                                <div class="text-box">
-                                    <p class="text-white">
-                                        <strong>"1. Inner Freedom"</strong>" — freedom from confusion, suffering, reactivity — is possible through direct understanding, not belief."
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="philosophy-item">
-                                <div class="text-box">
-                                    <p class="text-white">
-                                        <strong>"2. Outer Freedom"</strong>" — freedom from oppression, domination, and structural harm — depends on knowledge, critical thought, and collective awareness."
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="philosophy-item">
-                                <div class="text-box">
-                                    <p class="text-white">
-                                        <strong>"3. Generosity Is Viable"</strong>" — we reject manipulation, monetization, and control in favor of voluntary support and trust."
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="philosophy-item">
-                                <div class="text-box">
-                                    <p class="text-white">
-                                        <strong>"4. Technology Can Serve Liberation"</strong>" — when used with care, transparency, and ethical intention."
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="philosophy-item">
-                                <div class="text-box">
-                                    <p class="text-white">
-                                        <strong>"5. Truth Should Be Free"</strong>" — not hidden behind paywalls, status, or ideology."
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layout-element text-center philosophy-closing">
-                            <div class="text-box">
-                                <p class="text-white">
-                                    "The " <strong>"Open Freedom Project"</strong> " is an attempt to live this worldview — by sharing real knowledge, not selling content."
-                                </p>
-                                <p class="text-white">
-                                    "By being honest, not strategic."
-                                </p>
-                                <p class="text-white">
-                                    "By doing something good and letting it speak for itself."
-                                </p>
-                            </div>
+                        <div class="philosophy-closing">
+                            <p class="text-white">
+                                "The Open Freedom Project is an attempt to live this worldview — by sharing real knowledge, not selling content."
+                            </p>
+                            <p class="text-white">"By being honest, not strategic."</p>
+                            <p class="text-white">"By doing something good and letting it speak for itself."</p>
                         </div>
                     </div>
                 </div>
