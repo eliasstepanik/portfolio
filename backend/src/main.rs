@@ -1,7 +1,7 @@
-use axum::{Router, serve};
-use tower_http::cors::{CorsLayer, Any};
-use tracing::info;
+use axum::Router;
 use std::net::SocketAddr;
+use tower_http::cors::CorsLayer;
+use tracing::info;
 
 mod config;
 mod db;
@@ -20,8 +20,7 @@ async fn main() -> Result<(), AppError> {
     dotenvy::dotenv().ok();
 
     // Get database URL from environment
-    let database_url = std::env::var("DATABASE_URL")
-        .expect("DATABASE_URL must be set");
+    let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
 
     // Create database connection pool
     let pool = db::create_pool(&database_url).await?;
@@ -32,17 +31,21 @@ async fn main() -> Result<(), AppError> {
         .route("/health", axum::routing::get(health_check))
         .layer(
             CorsLayer::new()
-                .allow_origin("http://localhost:8080".parse::<axum::http::HeaderValue>().unwrap())
+                .allow_origin(
+                    "http://localhost:8080"
+                        .parse::<axum::http::HeaderValue>()
+                        .unwrap(),
+                )
                 .allow_methods([axum::http::Method::GET, axum::http::Method::POST])
-                .allow_headers([axum::http::header::CONTENT_TYPE])
+                .allow_headers([axum::http::header::CONTENT_TYPE]),
         )
         .with_state(pool);
 
     // Define the address to bind to
     let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
-    
+
     info!("Backend listening on http://{}", addr);
-    
+
     // Create TCP listener and serve the app
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();

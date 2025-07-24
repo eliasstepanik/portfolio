@@ -9,6 +9,7 @@ use tracing::error;
 #[derive(Debug)]
 pub enum AppError {
     Database(sqlx::Error),
+    #[allow(dead_code)]
     Internal(String),
 }
 
