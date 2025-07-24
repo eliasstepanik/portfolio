@@ -19,7 +19,7 @@ fn get_placeholder_books() -> Vec<AudioBook> {
             author: "Marcus Aurelius".to_string(),
             duration: "3:45:00".to_string(),
             audio_url: "/public/audio/meditations.mp3".to_string(),
-            cover_url: "/public/images/book-cover-1.jpg".to_string(),
+            cover_url: "/images/book-cover-1.jpg".to_string(),
             description: "Stoic philosophy and personal reflections from the Roman Emperor"
                 .to_string(),
         },
@@ -29,7 +29,7 @@ fn get_placeholder_books() -> Vec<AudioBook> {
             author: "Sun Tzu".to_string(),
             duration: "2:30:00".to_string(),
             audio_url: "/public/audio/art-of-war.mp3".to_string(),
-            cover_url: "/public/images/book-cover-2.jpg".to_string(),
+            cover_url: "/images/book-cover-2.jpg".to_string(),
             description: "Ancient Chinese military treatise on strategy and tactics".to_string(),
         },
         AudioBook {
@@ -38,7 +38,7 @@ fn get_placeholder_books() -> Vec<AudioBook> {
             author: "Plato".to_string(),
             duration: "11:00:00".to_string(),
             audio_url: "/public/audio/republic.mp3".to_string(),
-            cover_url: "/public/images/book-cover-3.jpg".to_string(),
+            cover_url: "/images/book-cover-3.jpg".to_string(),
             description: "Philosophical dialogue concerning justice and the ideal state"
                 .to_string(),
         },
@@ -48,7 +48,7 @@ fn get_placeholder_books() -> Vec<AudioBook> {
             author: "Niccolò Machiavelli".to_string(),
             duration: "4:15:00".to_string(),
             audio_url: "/public/audio/prince.mp3".to_string(),
-            cover_url: "/public/images/book-cover-4.jpg".to_string(),
+            cover_url: "/images/book-cover-4.jpg".to_string(),
             description: "Political treatise on power, leadership, and statecraft".to_string(),
         },
         AudioBook {
@@ -57,7 +57,7 @@ fn get_placeholder_books() -> Vec<AudioBook> {
             author: "Henry David Thoreau".to_string(),
             duration: "7:30:00".to_string(),
             audio_url: "/public/audio/walden.mp3".to_string(),
-            cover_url: "/public/images/book-cover-5.jpg".to_string(),
+            cover_url: "/images/book-cover-5.jpg".to_string(),
             description: "Reflections on simple living in natural surroundings".to_string(),
         },
         AudioBook {
@@ -66,7 +66,7 @@ fn get_placeholder_books() -> Vec<AudioBook> {
             author: "John Stuart Mill".to_string(),
             duration: "5:00:00".to_string(),
             audio_url: "/public/audio/on-liberty.mp3".to_string(),
-            cover_url: "/public/images/book-cover-6.jpg".to_string(),
+            cover_url: "/images/book-cover-6.jpg".to_string(),
             description: "Philosophical work on the nature and limits of power over the individual"
                 .to_string(),
         },
