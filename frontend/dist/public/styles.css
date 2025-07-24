@@ -324,6 +324,7 @@ p {
 
 .hero-subtitle {
   max-width: 700px;
+  margin: 0 auto;
 }
 
 .hero-subtitle p {
