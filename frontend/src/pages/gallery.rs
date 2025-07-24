@@ -1,8 +1,9 @@
 use leptos::*;
+use gloo_net::http::Request;
 
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
 pub struct AudioBook {
-    pub id: u32,
+    pub id: i32,  // Changed to match backend
     pub title: String,
     pub author: String,
     pub duration: String,
@@ -11,66 +12,14 @@ pub struct AudioBook {
     pub description: String,
 }
 
-fn get_placeholder_books() -> Vec<AudioBook> {
-    vec![
-        AudioBook {
-            id: 1,
-            title: "Meditations".to_string(),
-            author: "Marcus Aurelius".to_string(),
-            duration: "3:45:00".to_string(),
-            audio_url: "/public/audio/meditations.mp3".to_string(),
-            cover_url: "/images/book-cover-1.jpg".to_string(),
-            description: "Stoic philosophy and personal reflections from the Roman Emperor"
-                .to_string(),
-        },
-        AudioBook {
-            id: 2,
-            title: "The Art of War".to_string(),
-            author: "Sun Tzu".to_string(),
-            duration: "2:30:00".to_string(),
-            audio_url: "/public/audio/art-of-war.mp3".to_string(),
-            cover_url: "/images/book-cover-2.jpg".to_string(),
-            description: "Ancient Chinese military treatise on strategy and tactics".to_string(),
-        },
-        AudioBook {
-            id: 3,
-            title: "The Republic".to_string(),
-            author: "Plato".to_string(),
-            duration: "11:00:00".to_string(),
-            audio_url: "/public/audio/republic.mp3".to_string(),
-            cover_url: "/images/book-cover-3.jpg".to_string(),
-            description: "Philosophical dialogue concerning justice and the ideal state"
-                .to_string(),
-        },
-        AudioBook {
-            id: 4,
-            title: "The Prince".to_string(),
-            author: "Niccolò Machiavelli".to_string(),
-            duration: "4:15:00".to_string(),
-            audio_url: "/public/audio/prince.mp3".to_string(),
-            cover_url: "/images/book-cover-4.jpg".to_string(),
-            description: "Political treatise on power, leadership, and statecraft".to_string(),
-        },
-        AudioBook {
-            id: 5,
-            title: "Walden".to_string(),
-            author: "Henry David Thoreau".to_string(),
-            duration: "7:30:00".to_string(),
-            audio_url: "/public/audio/walden.mp3".to_string(),
-            cover_url: "/images/book-cover-5.jpg".to_string(),
-            description: "Reflections on simple living in natural surroundings".to_string(),
-        },
-        AudioBook {
-            id: 6,
-            title: "On Liberty".to_string(),
-            author: "John Stuart Mill".to_string(),
-            duration: "5:00:00".to_string(),
-            audio_url: "/public/audio/on-liberty.mp3".to_string(),
-            cover_url: "/images/book-cover-6.jpg".to_string(),
-            description: "Philosophical work on the nature and limits of power over the individual"
-                .to_string(),
-        },
-    ]
+async fn fetch_audiobooks() -> Result<Vec<AudioBook>, String> {
+    Request::get("http://localhost:3000/api/audiobooks")
+        .send()
+        .await
+        .map_err(|e| format!("Failed to fetch: {}", e))?
+        .json()
+        .await
+        .map_err(|e| format!("Failed to parse JSON: {}", e))
 }
 
 #[component]
@@ -79,9 +28,7 @@ pub fn GalleryPage() -> impl IntoView {
     let audio_books = create_resource(
         || (),
         |_| async {
-            // Simulate API delay
-            std::future::ready(()).await;
-            get_placeholder_books()
+            fetch_audiobooks().await
         },
     );
 
@@ -126,12 +73,13 @@ pub fn GalleryPage() -> impl IntoView {
                         </div>
                     }>
                         {move || {
-                            audio_books.get().map(|books| view! {
-                                <div class="philosophy-grid">
-                                    <For
-                                        each=move || books.clone()
-                                        key=|book| book.id
-                                        children=move |book| view! {
+                            audio_books.get().map(|books| match books {
+                                Ok(books) => view! {
+                                    <div class="philosophy-grid">
+                                        <For
+                                            each=move || books.clone()
+                                            key=|book| book.id
+                                            children=move |book| view! {
                                             <div class="audio-book-item philosophy-item">
                                                 <div class="audio-book-cover" style="margin-bottom: 20px;">
                                                     <img
@@ -155,7 +103,14 @@ pub fn GalleryPage() -> impl IntoView {
                                             </div>
                                         }
                                     />
-                                </div>
+                                    </div>
+                                },
+                                Err(e) => view! {
+                                    <div style="text-align: center; padding: 40px;">
+                                        <p style="font-size: 1.2rem; color: #d32f2f;">"Error loading audio books"</p>
+                                        <p style="color: #666;">{e.to_string()}</p>
+                                    </div>
+                                }
                             })
                         }}
                     </Suspense>
