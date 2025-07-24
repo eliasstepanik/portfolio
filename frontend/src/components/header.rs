@@ -1,13 +1,13 @@
 use leptos::*;
 use leptos_router::*;
-use web_sys::window;
 use wasm_bindgen::JsCast;
+use web_sys::window;
 
 #[component]
 pub fn Header() -> impl IntoView {
     // Signal for mobile menu open/close state
     let (menu_open, set_menu_open) = create_signal(false);
-    
+
     // Signal for header scroll state
     let (scrolled, set_scrolled) = create_signal(false);
 
@@ -35,8 +35,9 @@ pub fn Header() -> impl IntoView {
             let closure = wasm_bindgen::closure::Closure::wrap(Box::new(move |_: web_sys::Event| {
                 handle_scroll();
             }) as Box<dyn FnMut(_)>);
-            
-            let _ = win.add_event_listener_with_callback("scroll", closure.as_ref().unchecked_ref());
+
+            let _ =
+                win.add_event_listener_with_callback("scroll", closure.as_ref().unchecked_ref());
             closure.forget();
         }
     });
@@ -79,6 +80,17 @@ pub fn Header() -> impl IntoView {
                             }>
                                 <A href="/about" class="item-content">
                                     "About"
+                                </A>
+                            </div>
+                        </li>
+                        <li class="block-header-item">
+                            <div class=move || if is_active("/gallery") {
+                                "item-content-wrapper item-content-wrapper--active block-header-item__item"
+                            } else {
+                                "item-content-wrapper block-header-item__item"
+                            }>
+                                <A href="/gallery" class="item-content">
+                                    "Gallery"
                                 </A>
                             </div>
                         </li>
@@ -155,6 +167,17 @@ pub fn Header() -> impl IntoView {
                                 }>
                                     <A href="/about" class="item-content" on:click=move |_| set_menu_open.set(false)>
                                         "About"
+                                    </A>
+                                </div>
+                            </li>
+                            <li class="block-header-item">
+                                <div class=move || if is_active("/gallery") {
+                                    "item-content-wrapper item-content-wrapper--active block-header-item__item"
+                                } else {
+                                    "item-content-wrapper block-header-item__item"
+                                }>
+                                    <A href="/gallery" class="item-content" on:click=move |_| set_menu_open.set(false)>
+                                        "Gallery"
                                     </A>
                                 </div>
                             </li>

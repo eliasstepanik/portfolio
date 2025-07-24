@@ -74,7 +74,7 @@ pub fn HomePage() -> impl IntoView {
                                     "Understanding how social, political, and cultural systems shape our lives — and how to reclaim agency without reproducing harm. From civil liberties to mutual aid, we highlight ideas that question power and open paths to collective liberation."
                                 </p>
                             </div>
-                            
+
                             <div class="topic-image">
                                 <div class="image image--grid">
                                     <img
@@ -114,7 +114,7 @@ pub fn HomePage() -> impl IntoView {
                                     "Freedom requires thinking clearly and questioning the lenses we've inherited. We focus on writers and thinkers who help us challenge assumptions, understand systems, and seek truth without dogma."
                                 </p>
                             </div>
-                            
+
                             <div class="topic-image">
                                 <div class="image image--grid">
                                     <img

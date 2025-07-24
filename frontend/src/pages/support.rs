@@ -24,7 +24,7 @@ pub fn SupportPage() -> impl IntoView {
                         <div class="hero-subtitle">
                             <h2 class="text-white">"Your help means the world to us"</h2>
                         </div>
-                        
+
                         <div style="margin-top: 3rem;">
                             <p class="text-white" style="font-size: 1.25rem; max-width: 600px; margin: 0 auto;">
                                 "We're currently setting up our donation system to ensure it's transparent, secure, and easy to use. Check back soon!"

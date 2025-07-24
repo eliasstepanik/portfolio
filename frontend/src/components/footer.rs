@@ -17,7 +17,7 @@ pub fn Footer() -> impl IntoView {
                     <h4>"Freedom"</h4>
                     <h4>"Project"</h4>
                 </div>
-                
+
                 <div class="footer-social">
                     <a
                         href="https://twitter.com/"
