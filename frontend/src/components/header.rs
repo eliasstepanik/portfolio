@@ -8,8 +8,6 @@ pub fn Header() -> impl IntoView {
     // Signal for mobile menu open/close state
     let (menu_open, set_menu_open) = create_signal(false);
 
-    // Signal for dark mode state
-    let (is_dark, set_is_dark) = create_signal(false);
 
     // Signal for header scroll state
     let (scrolled, set_scrolled) = create_signal(false);
@@ -21,37 +19,6 @@ pub fn Header() -> impl IntoView {
     // Helper function to determine if a link is active
     let is_active = move |path: &str| pathname() == path;
 
-    // Check initial theme from localStorage
-    create_effect(move |_| {
-        if let Some(storage) = window().and_then(|w| w.local_storage().ok()).flatten() {
-            if let Ok(Some(theme)) = storage.get_item("theme") {
-                set_is_dark.set(theme == "dark");
-                if theme == "dark" {
-                    if let Some(doc) = window().and_then(|w| w.document()) {
-                        let _ = doc
-                            .document_element()
-                            .and_then(|el| el.set_attribute("data-theme", "dark").ok());
-                    }
-                }
-            }
-        }
-    });
-
-    let toggle_dark_mode = move |_| {
-        let new_theme = !is_dark.get();
-        set_is_dark.set(new_theme);
-
-        if let Some(doc) = window().and_then(|w| w.document()) {
-            let theme = if new_theme { "dark" } else { "light" };
-            let _ = doc
-                .document_element()
-                .and_then(|el| el.set_attribute("data-theme", theme).ok());
-
-            if let Some(storage) = window().and_then(|w| w.local_storage().ok()).flatten() {
-                let _ = storage.set_item("theme", theme);
-            }
-        }
-    };
 
     // Set up scroll listener
     create_effect(move |_| {
@@ -136,14 +103,6 @@ pub fn Header() -> impl IntoView {
                                 </A>
                             </div>
                         </li>
-                        <li class="block-header-item">
-                            <button
-                                class="dark-mode-button"
-                                on:click=toggle_dark_mode
-                            >
-                                {move || if is_dark.get() { "☀️" } else { "🌙" }}
-                            </button>
-                        </li>
                     </ul>
                 </nav>
             </div>
@@ -215,14 +174,6 @@ pub fn Header() -> impl IntoView {
                                         "Contact"
                                     </A>
                                 </div>
-                            </li>
-                            <li class="block-header-item">
-                                <button
-                                    class="dark-mode-button"
-                                    on:click=toggle_dark_mode
-                                >
-                                    {move || if is_dark.get() { "☀️" } else { "🌙" }}
-                                </button>
                             </li>
                         </ul>
                     </nav>
