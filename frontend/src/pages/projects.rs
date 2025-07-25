@@ -188,9 +188,6 @@ pub fn ProjectsPage() -> impl IntoView {
                                                     </div>
 
                                                     <div class="project-stats">
-                                                        <span>
-                                                            "⭐ " {project.stars_count}
-                                                        </span>
                                                         <span>{project.primary_language.clone()}</span>
                                                     </div>
 

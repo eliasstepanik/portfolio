@@ -958,10 +958,11 @@ p {
 
 .project-stats {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 20px;
   color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
 .project-stats span {
