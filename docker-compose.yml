@@ -1,6 +1,7 @@
 services:
   postgres:
     image: postgres:16-alpine
+    container_name: postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -9,6 +10,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - internal
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -17,16 +20,31 @@ services:
 
   backend:
     build: ./backend
+    container_name: backend
     depends_on:
       postgres:
         condition: service_healthy
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/portfolio
+      RUST_LOG: info
     ports:
       - "3000:3000"
-    volumes:
-      - ./backend:/app
-    command: cargo run
+    networks:
+      - internal
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    networks:
+      - internal
+    depends_on:
+      - backend
+    environment:
+      - BACKEND_URL=http://backend:3000
 
 volumes:
   postgres_data:
+
+networks:
+  internal:

@@ -25,6 +25,9 @@ async fn main() -> Result<(), AppError> {
     // Create database connection pool
     let pool = db::create_pool(&database_url).await?;
 
+    // Run database migrations
+    db::run_migrations(&pool).await?;
+
     // Build our application with routes
     let app = Router::new()
         .nest("/api", routes::create_router())

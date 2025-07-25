@@ -52,7 +52,7 @@ pub fn Header() -> impl IntoView {
         }>
             <div class="block-header-layout-desktop">
                 <A href="/" class="block-header-logo block-header__logo">
-                    <span class="logo-text">"ES Portfolio"</span>
+                    <span class="logo-text">"Elias Stepanik Portfolio"</span>
                 </A>
 
                 <nav class="block-header__nav">

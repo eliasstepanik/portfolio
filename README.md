@@ -5,12 +5,13 @@ A personal developer portfolio showcasing projects and skills, built with Rust (
 ## Features
 
 - 🦀 Full-stack Rust with Leptos (WASM) frontend and Axum backend
-- 🎨 Dark/Light mode toggle with persistence
+- 🎨 Dark theme optimized for developers
 - 📱 Fully responsive design
 - 🚀 Project showcase with language filtering
 - 📊 PostgreSQL database with SQLx
 - 🐳 Docker Compose for easy deployment
 - ⚡ WebAssembly for near-native frontend performance
+- 🔄 **Automatic database migrations on startup**
 
 ## Prerequisites
 
@@ -20,7 +21,18 @@ A personal developer portfolio showcasing projects and skills, built with Rust (
 - Docker & Docker Compose (for PostgreSQL)
 - SQLx CLI (for database migrations)
 
-## Setup
+## Quick Start with Docker
+
+The easiest way to run the entire project:
+
+```bash
+# Start everything (PostgreSQL, Backend, Frontend in dev mode)
+docker-compose up -d
+```
+
+**The backend automatically runs database migrations on startup**, so you don't need to manually set up the database schema.
+
+## Manual Setup
 
 1. Install Rust target for WebAssembly:
    ```bash
@@ -38,7 +50,8 @@ A personal developer portfolio showcasing projects and skills, built with Rust (
    docker-compose up -d postgres
    ```
 
-4. Set up database:
+4. Database migrations are **automatically applied** when starting the backend.
+   To manually run migrations:
    ```bash
    cd backend
    sqlx database create
@@ -75,7 +88,11 @@ cd backend && cargo build --release
 
 Build with Docker:
 ```bash
+# Development
 docker-compose build
+
+# Production (optimized builds)
+docker-compose -f docker-compose.prod.yml build
 ```
 
 ## Project Structure

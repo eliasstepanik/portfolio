@@ -34,7 +34,7 @@ INSERT INTO projects (name, description, github_url, demo_url, technologies, pri
  'Real-time fluid dynamics simulation using SPH (Smoothed-particle hydrodynamics) implemented in C#, capable of simulating thousands of particles.', 
  'https://github.com/eliasstepanik/FluidSimulation', 
  NULL, 
- ARRAY['C#', 'Unity', 'Physics', 'Simulation', 'HLSL', 'Compute Shaders'], 
+ ARRAY['C#', 'Physics', 'Simulation'],
  'C#', 
  203, 
  true, 
