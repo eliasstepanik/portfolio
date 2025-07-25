@@ -44,18 +44,21 @@ pub fn ProjectsPage() -> impl IntoView {
     let languages = create_resource(
         || (),
         |_| async move {
-            fetch_projects(None).await.map(|projects| {
-                let mut langs: Vec<String> = projects
-                    .iter()
-                    .map(|p| p.primary_language.clone())
-                    .collect::<std::collections::HashSet<_>>()
-                    .into_iter()
-                    .collect();
-                langs.sort();
-                langs.insert(0, "All".to_string());
-                langs
-            }).unwrap_or_else(|_| vec!["All".to_string()])
-        }
+            fetch_projects(None)
+                .await
+                .map(|projects| {
+                    let mut langs: Vec<String> = projects
+                        .iter()
+                        .map(|p| p.primary_language.clone())
+                        .collect::<std::collections::HashSet<_>>()
+                        .into_iter()
+                        .collect();
+                    langs.sort();
+                    langs.insert(0, "All".to_string());
+                    langs
+                })
+                .unwrap_or_else(|_| vec!["All".to_string()])
+        },
     );
 
     view! {

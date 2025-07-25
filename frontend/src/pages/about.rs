@@ -51,6 +51,9 @@ pub fn AboutPage() -> impl IntoView {
 
                                 <h4 class="skill-heading-spaced">"Tools & Systems"</h4>
                                 <p>"Git, Docker, PostgreSQL, Linux, CI/CD"</p>
+
+                                <h4 class="skill-heading-spaced">"Cloud Platforms"</h4>
+                                <p>"AWS (EC2, S3, Lambda, RDS, CloudFormation)"</p>
                             </div>
                         </div>
 
@@ -75,7 +78,7 @@ pub fn AboutPage() -> impl IntoView {
                                 <p>"Scrum, Agile, Kanban, Waterfall"</p>
 
                                 <h4 class="skill-heading-spaced">"Experience"</h4>
-                                <p>"Led cross-functional teams in software development projects using Scrum framework. Experienced in sprint planning, daily standups, retrospectives, and backlog management."</p>
+                                <p>"Experienced in working with Scrum framework in software development projects. Actively participated in sprint planning, daily standups, retrospectives, and backlog refinement."</p>
 
                                 <h4 class="skill-heading-spaced">"Tools"</h4>
                                 <p>"Jira, Azure DevOps, GitHub Projects, Trello"</p>
@@ -83,13 +86,13 @@ pub fn AboutPage() -> impl IntoView {
                         </div>
 
                         <div class="vision-box">
-                            <h2>"Leadership Skills"</h2>
+                            <h2>"Key Competencies"</h2>
                             <ul class="vision-list">
-                                <li>"Facilitate effective sprint ceremonies"</li>
-                                <li>"Coordinate between stakeholders and development teams"</li>
-                                <li>"Remove blockers and optimize team velocity"</li>
-                                <li>"Foster collaborative development culture"</li>
-                                <li>"Balance technical debt with feature delivery"</li>
+                                <li>"Collaborate effectively in agile development teams"</li>
+                                <li>"Contribute to sprint planning and estimation"</li>
+                                <li>"Participate in code reviews and knowledge sharing"</li>
+                                <li>"Work closely with product owners and stakeholders"</li>
+                                <li>"Help maintain sprint velocity and quality standards"</li>
                             </ul>
                         </div>
                     </div>

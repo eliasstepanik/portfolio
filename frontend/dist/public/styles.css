@@ -6,17 +6,18 @@
    CSS Variables for Theming
    ============================================= */
 :root {
-  /* Clean professional theme */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #212529;
-  --text-secondary: #6c757d;
-  --border-color: #dee2e6;
-  --shadow: rgba(0, 0, 0, 0.1);
+  /* Dark theme as default */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --border-color: #3a3a3a;
+  --shadow: rgba(0, 0, 0, 0.3);
   
   /* Brand colors */
-  --color-primary: #0d6efd;
-  --color-primary-dark: #0a58ca;
+  --color-primary: #ff7878;
+  --color-primary-dark: #ff6060;
+  --color-background-dark: #0f0f0f;
   --color-text-light: #ffffff;
 }
 
@@ -98,7 +99,7 @@ h5 {
 
 p {
   margin-bottom: 1rem;
-  color: #4a4a4a;
+  color: var(--text-secondary);
 }
 
 /* =============================================
@@ -130,8 +131,8 @@ p {
 }
 
 .block-header--scrolled {
-  background-color: #1a1a1a;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-secondary);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .block-header-layout-desktop {
@@ -168,7 +169,7 @@ p {
 }
 
 .item-content {
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 16px;
   font-weight: 400;
   transition: opacity 0.3s ease;
@@ -187,7 +188,7 @@ p {
   left: 0;
   right: 0;
   height: 2px;
-  background-color: #ffffff;
+  background-color: var(--color-primary);
 }
 
 /* Mobile Navigation */
@@ -221,7 +222,7 @@ p {
   .burger__meat {
     width: 100%;
     height: 2px;
-    background-color: #ffffff;
+    background-color: var(--text-primary);
     transition: transform 0.3s ease;
   }
   
@@ -230,19 +231,19 @@ p {
     top: 100%;
     left: 0;
     right: 0;
-    background-color: #1a1a1a;
+    background-color: var(--bg-secondary);
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
   }
   
   .block-header--scrolled .block-header-layout-mobile__dropdown {
-    background-color: #1a1a1a;
+    background-color: var(--bg-secondary);
   }
   
   .block-header-layout-mobile__dropdown--open {
     max-height: 400px;
-    border-top: 1px solid #333;
+    border-top: 1px solid var(--border-color);
   }
   
   .block-header-layout-mobile__dropdown .block-header__nav-links {
@@ -335,7 +336,7 @@ p {
 .hero-title h2 {
   font-size: 3.5rem;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text-primary);
   margin-bottom: 0;
   letter-spacing: -1px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -349,7 +350,7 @@ p {
 .hero-subtitle p {
   font-size: 1.25rem;
   font-weight: 300;
-  color: #ffffff;
+  color: var(--text-primary);
   opacity: 0.9;
   line-height: 1.8;
   margin: 0;
@@ -375,25 +376,28 @@ p {
 }
 
 .grid-button--primary {
-  background-color: #ffffff;
-  color: #1a1a1a;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
 }
 
 .grid-button--primary:hover {
-  background-color: #f0f0f0;
+  background-color: var(--color-primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(255, 120, 120, 0.3);
 }
 
 .grid-button--secondary {
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
 }
 
 .grid-button--secondary:hover {
-  background-color: #333333;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  border-color: var(--color-primary);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(255, 120, 120, 0.3);
 }
 
 /* =============================================
@@ -401,7 +405,7 @@ p {
    ============================================= */
 .section {
   padding: 80px 0;
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
 }
 
 .block-layout {
@@ -421,7 +425,7 @@ p {
 
 .section-title h2 {
   font-size: 2.75rem;
-  color: #1a1a1a;
+  color: var(--text-primary);
   font-weight: 700;
   margin-bottom: 0;
 }
@@ -479,13 +483,13 @@ p {
 .topic-content h5 {
   font-size: 1.75rem;
   margin-bottom: 20px;
-  color: #1a1a1a;
+  color: var(--text-primary);
 }
 
 .topic-content p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #4a4a4a;
+  color: var(--text-secondary);
 }
 
 @media (max-width: 768px) {
@@ -516,7 +520,7 @@ p {
 .support-cta {
   position: relative;
   padding: 100px 0;
-  background-color: #f8f8f8;
+  background-color: var(--bg-secondary);
 }
 
 .support-cta .block-background {
@@ -540,7 +544,7 @@ p {
 
 .support-layout h3 {
   font-size: 2.25rem;
-  color: #ffffff;
+  color: var(--text-primary);
   max-width: 800px;
   font-weight: 600;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -550,9 +554,10 @@ p {
    Footer
    ============================================= */
 .footer {
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   padding: 60px 0 40px;
+  border-top: 1px solid var(--border-color);
 }
 
 .footer-container {
@@ -571,7 +576,7 @@ p {
 }
 
 .footer-top h4 {
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 1.5rem;
   font-weight: 300;
   letter-spacing: 2px;
@@ -618,7 +623,7 @@ p {
 .social-icons__link svg {
   width: 22px;
   height: 22px;
-  fill: #ffffff;
+  fill: var(--text-primary);
 }
 
 @media (max-width: 768px) {
@@ -663,7 +668,7 @@ p {
 
 .input__label {
   font-size: 1.1rem;
-  color: #ffffff;
+  color: var(--text-primary);
   font-weight: 500;
 }
 
@@ -671,21 +676,21 @@ p {
   width: 100%;
   padding: 15px 20px;
   font-size: 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid var(--border-color);
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   transition: all 0.3s ease;
 }
 
 .input__component::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-secondary);
 }
 
 .input__component:focus {
   outline: none;
-  border-color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-primary);
+  background-color: var(--bg-secondary);
 }
 
 .input__component--textarea {
@@ -730,14 +735,14 @@ p {
 .mission-box,
 .vision-box {
   padding: 40px;
-  background-color: #f8f8f8;
+  background-color: var(--bg-secondary);
   border-radius: 20px;
 }
 
 .mission-box h3,
 .vision-box h3 {
   margin-bottom: 20px;
-  color: #1a1a1a;
+  color: var(--text-primary);
 }
 
 .vision-list {
@@ -749,14 +754,14 @@ p {
   margin-bottom: 15px;
   padding-left: 25px;
   position: relative;
-  color: #4a4a4a;
+  color: var(--text-secondary);
 }
 
 .vision-list li:before {
   content: "✓";
   position: absolute;
   left: 0;
-  color: #1a1a1a;
+  color: var(--color-primary);
   font-weight: bold;
 }
 
@@ -797,13 +802,13 @@ p {
 }
 
 .philosophy-item h4 {
-  color: #ffffff;
+  color: var(--text-primary);
   margin-bottom: 20px;
   font-size: 1.5rem;
 }
 
 .philosophy-item p {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
   line-height: 1.8;
   font-size: 1.1rem;
 }
@@ -992,7 +997,7 @@ p {
 
 .error-text {
   font-size: 1.2rem;
-  color: #d32f2f;
+  color: var(--color-primary);
 }
 
 .error-details {

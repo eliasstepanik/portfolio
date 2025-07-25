@@ -8,7 +8,6 @@ pub fn Header() -> impl IntoView {
     // Signal for mobile menu open/close state
     let (menu_open, set_menu_open) = create_signal(false);
 
-
     // Signal for header scroll state
     let (scrolled, set_scrolled) = create_signal(false);
 
@@ -18,7 +17,6 @@ pub fn Header() -> impl IntoView {
 
     // Helper function to determine if a link is active
     let is_active = move |path: &str| pathname() == path;
-
 
     // Set up scroll listener
     create_effect(move |_| {
