@@ -216,6 +216,14 @@ pub fn Header() -> impl IntoView {
                                     </A>
                                 </div>
                             </li>
+                            <li class="block-header-item">
+                                <button
+                                    class="dark-mode-button"
+                                    on:click=toggle_dark_mode
+                                >
+                                    {move || if is_dark.get() { "☀️" } else { "🌙" }}
+                                </button>
+                            </li>
                         </ul>
                     </nav>
                 </div>

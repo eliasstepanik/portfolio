@@ -18,7 +18,8 @@ pub struct Project {
 async fn fetch_projects(filter: Option<String>) -> Result<Vec<Project>, String> {
     let mut url = "http://localhost:3000/api/projects".to_string();
     if let Some(lang) = filter {
-        url.push_str(&format!("?language={lang}"));
+        let encoded_lang = urlencoding::encode(&lang);
+        url.push_str(&format!("?language={encoded_lang}"));
     }
 
     Request::get(&url)

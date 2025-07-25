@@ -65,6 +65,34 @@ pub fn AboutPage() -> impl IntoView {
                             </ul>
                         </div>
                     </div>
+
+                    // Project Management Section
+                    <div class="mission-vision-layout section-spacing-lg">
+                        <div class="mission-box">
+                            <h2>"Project Management"</h2>
+                            <div class="section-spacing-lg">
+                                <h4 class="skill-heading">"Methodologies"</h4>
+                                <p>"Scrum, Agile, Kanban, Waterfall"</p>
+
+                                <h4 class="skill-heading-spaced">"Experience"</h4>
+                                <p>"Led cross-functional teams in software development projects using Scrum framework. Experienced in sprint planning, daily standups, retrospectives, and backlog management."</p>
+
+                                <h4 class="skill-heading-spaced">"Tools"</h4>
+                                <p>"Jira, Azure DevOps, GitHub Projects, Trello"</p>
+                            </div>
+                        </div>
+
+                        <div class="vision-box">
+                            <h2>"Leadership Skills"</h2>
+                            <ul class="vision-list">
+                                <li>"Facilitate effective sprint ceremonies"</li>
+                                <li>"Coordinate between stakeholders and development teams"</li>
+                                <li>"Remove blockers and optimize team velocity"</li>
+                                <li>"Foster collaborative development culture"</li>
+                                <li>"Balance technical debt with feature delivery"</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </section>
 
