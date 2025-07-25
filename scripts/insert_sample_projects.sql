@@ -39,5 +39,15 @@ VALUES
      'Rust',
      8,
      true,
+     NULL),
+     
+    ('path-tracer',
+     'WebGPU-based path tracer implementation with WGSL shaders',
+     'https://github.com/eliasstepanik/path-tracer',
+     NULL,
+     ARRAY['Rust', 'WebGPU', 'WGSL', 'Graphics', 'Ray Tracing'],
+     'Rust',
+     15,
+     true,
      NULL)
 ON CONFLICT DO NOTHING;
