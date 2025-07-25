@@ -1,5 +1,5 @@
 /* =============================================
-   Open Freedom Project - Main Stylesheet
+   Portfolio - Main Stylesheet
    ============================================= */
 
 /* =============================================
@@ -855,6 +855,243 @@ p {
 .text-white h5,
 .text-white p {
   color: #ffffff !important;
+}
+
+/* =============================================
+   Component Specific Classes
+   ============================================= */
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.section-spacing {
+  margin-top: 1rem;
+}
+
+.section-spacing-lg {
+  margin-top: 2rem;
+}
+
+.section-spacing-xl {
+  margin-top: 3rem;
+}
+
+.skill-heading {
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+.skill-heading-spaced {
+  margin: 20px 0 10px;
+  color: var(--text-primary);
+}
+
+.filter-container {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.filter-button {
+  margin: 0 5px;
+  padding: 8px 16px;
+  border: 2px solid var(--border-color);
+  background: transparent;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  color: var(--text-primary);
+}
+
+.filter-button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.filter-button--active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+.project-image {
+  margin-bottom: 20px;
+}
+
+.project-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 15px;
+}
+
+.project-header h4 {
+  margin: 0;
+}
+
+.project-description {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.tech-stack {
+  margin-bottom: 20px;
+}
+
+.tech-badge {
+  display: inline-block;
+  background: var(--bg-secondary);
+  padding: 4px 10px;
+  margin: 2px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.featured-badge {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.project-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  color: var(--text-secondary);
+}
+
+.project-stats span {
+  display: flex;
+  align-items: center;
+}
+
+.project-links {
+  display: flex;
+  gap: 10px;
+}
+
+.project-links a {
+  flex: 1;
+  text-align: center;
+}
+
+.dark-mode-button {
+  background: none;
+  border: 1px solid currentColor;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.dark-mode-button:hover {
+  background-color: var(--bg-secondary);
+}
+
+.loading-message {
+  text-align: center;
+  padding: 40px;
+}
+
+.loading-text {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.error-message {
+  text-align: center;
+  padding: 40px;
+}
+
+.error-text {
+  font-size: 1.2rem;
+  color: #d32f2f;
+}
+
+.error-details {
+  color: var(--text-secondary);
+  margin-top: 10px;
+}
+
+.philosophy-text {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  color: var(--text-primary);
+}
+
+/* =============================================
+   Project Card Animations
+   ============================================= */
+.project-card {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 107, 107, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-card .project-image img {
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-card .grid-button {
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .grid-button--secondary {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  transform: translateY(-2px);
+}
+
+.project-card:hover .grid-button--primary {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.project-card .tech-badge {
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .tech-badge {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  transform: scale(1.05);
 }
 
 /* =============================================
