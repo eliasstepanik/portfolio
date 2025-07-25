@@ -1,20 +1,24 @@
-# Open Freedom Project
+# Elias Stepanik - Portfolio
 
-A modern web application built with Rust and Leptos framework.
+A personal developer portfolio showcasing projects and skills, built with Rust (Leptos + Axum) and PostgreSQL.
 
 ## Features
 
-- >� Built with Rust for safety and performance
-- � WebAssembly for near-native speed
-- = Client-side routing with no page reloads
-- =� Responsive design
-- <� Fine-grained reactivity
+- 🦀 Full-stack Rust with Leptos (WASM) frontend and Axum backend
+- 🎨 Dark/Light mode toggle with persistence
+- 📱 Fully responsive design
+- 🚀 Project showcase with language filtering
+- 📊 PostgreSQL database with SQLx
+- 🐳 Docker Compose for easy deployment
+- ⚡ WebAssembly for near-native frontend performance
 
 ## Prerequisites
 
-- Rust (stable or nightly)
+- Rust (stable)
 - `wasm32-unknown-unknown` target
-- Trunk (for building and serving)
+- Trunk (for building and serving frontend)
+- Docker & Docker Compose (for PostgreSQL)
+- SQLx CLI (for database migrations)
 
 ## Setup
 
@@ -23,46 +27,91 @@ A modern web application built with Rust and Leptos framework.
    rustup target add wasm32-unknown-unknown
    ```
 
-2. Install Trunk:
+2. Install required tools:
    ```bash
    cargo install trunk
+   cargo install sqlx-cli --no-default-features --features postgres
+   ```
+
+3. Start PostgreSQL:
+   ```bash
+   docker-compose up -d postgres
+   ```
+
+4. Set up database:
+   ```bash
+   cd backend
+   sqlx database create
+   sqlx migrate run
    ```
 
 ## Development
 
-Run the development server:
+Run the full stack:
 ```bash
-just run
-# or
-cd frontend && trunk serve --open
+just dev
 ```
 
-The application will be available at `http://localhost:8080`
+Or run components separately:
+- Backend: `just backend-dev`
+- Frontend: `just run`
+- Database: `docker-compose up -d postgres`
+
+The application will be available at:
+- Frontend: `http://localhost:8080` (or 8081)
+- Backend API: `http://localhost:3000`
 
 ## Building for Production
 
-Build optimized static files:
+Build frontend:
 ```bash
 just build-web
-# or
-cd frontend && trunk build --release
 ```
 
-The static files will be generated in `frontend/dist/` directory.
+Build backend:
+```bash
+cd backend && cargo build --release
+```
+
+Build with Docker:
+```bash
+docker-compose build
+```
 
 ## Project Structure
 
-- `frontend/` - Web application source code
-  - `src/` - Rust source files
-    - `app.rs` - Root application component
-    - `components/` - Reusable UI components
-    - `pages/` - Page components
-  - `public/` - Static assets (CSS, images)
-  - `index.html` - HTML entry point
-  - `Trunk.toml` - Trunk configuration
+```
+.
+├── backend/                  # Axum API server
+│   ├── src/
+│   │   ├── models/          # Database models
+│   │   ├── routes/          # API endpoints
+│   │   └── main.rs          # Server entry point
+│   └── migrations/          # SQL migrations
+├── frontend/                # Leptos WASM app
+│   ├── src/
+│   │   ├── components/      # Reusable components
+│   │   ├── pages/          # Page components
+│   │   └── app.rs          # Root component
+│   └── public/             # Static assets
+└── docker-compose.yml      # Service orchestration
+```
+
+## API Endpoints
+
+- `GET /api/projects` - List all projects (with optional language filter)
+- `GET /api/projects/:id` - Get single project
+- `GET /health` - Health check
 
 ## Technologies
 
-- [Leptos](https://leptos.dev/) - Rust web framework
-- [WebAssembly](https://webassembly.org/) - Compilation target
-- [Trunk](https://trunkrs.dev/) - WASM web application bundler
+- [Leptos](https://leptos.dev/) - Reactive web framework
+- [Axum](https://github.com/tokio-rs/axum) - Web application framework
+- [SQLx](https://github.com/launchbadge/sqlx) - Async SQL toolkit
+- [PostgreSQL](https://www.postgresql.org/) - Database
+- [WebAssembly](https://webassembly.org/) - Frontend compilation target
+- [Trunk](https://trunkrs.dev/) - WASM bundler
+
+## License
+
+© 2025 Elias Stepanik. All rights reserved.

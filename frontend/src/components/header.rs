@@ -87,7 +87,7 @@ pub fn Header() -> impl IntoView {
         }>
             <div class="block-header-layout-desktop">
                 <A href="/" class="block-header-logo block-header__logo">
-                    <span style="font-size: 1.5rem; font-weight: bold;">"ES Portfolio"</span>
+                    <span class="logo-text">"ES Portfolio"</span>
                 </A>
 
                 <nav class="block-header__nav">
@@ -126,17 +126,6 @@ pub fn Header() -> impl IntoView {
                             </div>
                         </li>
                         <li class="block-header-item">
-                            <div class=move || if is_active("/support") {
-                                "item-content-wrapper item-content-wrapper--active block-header-item__item"
-                            } else {
-                                "item-content-wrapper block-header-item__item"
-                            }>
-                                <A href="/support" class="item-content">
-                                    "Support"
-                                </A>
-                            </div>
-                        </li>
-                        <li class="block-header-item">
                             <div class=move || if is_active("/contact") {
                                 "item-content-wrapper item-content-wrapper--active block-header-item__item"
                             } else {
@@ -149,10 +138,8 @@ pub fn Header() -> impl IntoView {
                         </li>
                         <li class="block-header-item">
                             <button
-                                class="dark-mode-toggle"
+                                class="dark-mode-button"
                                 on:click=toggle_dark_mode
-                                style="background: none; border: 1px solid currentColor;
-                                       padding: 5px 10px; border-radius: 5px; cursor: pointer;"
                             >
                                 {move || if is_dark.get() { "☀️" } else { "🌙" }}
                             </button>
@@ -164,7 +151,7 @@ pub fn Header() -> impl IntoView {
             // Mobile layout
             <div class="block-header-layout-mobile">
                 <A href="/" class="block-header-logo block-header__logo">
-                    <span style="font-size: 1.5rem; font-weight: bold;">"ES Portfolio"</span>
+                    <span class="logo-text">"ES Portfolio"</span>
                 </A>
 
                 <button
@@ -215,17 +202,6 @@ pub fn Header() -> impl IntoView {
                                 }>
                                     <A href="/projects" class="item-content" on:click=move |_| set_menu_open.set(false)>
                                         "Projects"
-                                    </A>
-                                </div>
-                            </li>
-                            <li class="block-header-item">
-                                <div class=move || if is_active("/support") {
-                                    "item-content-wrapper item-content-wrapper--active block-header-item__item"
-                                } else {
-                                    "item-content-wrapper block-header-item__item"
-                                }>
-                                    <A href="/support" class="item-content" on:click=move |_| set_menu_open.set(false)>
-                                        "Support"
                                     </A>
                                 </div>
                             </li>

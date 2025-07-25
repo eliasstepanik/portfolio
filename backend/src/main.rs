@@ -31,13 +31,13 @@ async fn main() -> Result<(), AppError> {
         .route("/health", axum::routing::get(health_check))
         .layer(
             CorsLayer::new()
-                .allow_origin(
-                    "http://localhost:8080"
-                        .parse::<axum::http::HeaderValue>()
-                        .unwrap(),
-                )
-                .allow_methods([axum::http::Method::GET, axum::http::Method::POST])
-                .allow_headers([axum::http::header::CONTENT_TYPE]),
+                .allow_origin(tower_http::cors::Any)
+                .allow_methods([
+                    axum::http::Method::GET,
+                    axum::http::Method::POST,
+                    axum::http::Method::OPTIONS,
+                ])
+                .allow_headers(tower_http::cors::Any),
         )
         .with_state(pool);
 

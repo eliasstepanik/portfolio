@@ -118,7 +118,7 @@ pub fn ContactPage() -> impl IntoView {
                 <div class="block-background block-background--fixed">
                     <img
                         src="/public/images/hero-contact.jpg"
-                        alt="Contact Open Freedom Project"
+                        alt="Contact Elias Stepanik"
                         class="block-background__image block-background__image--fixed"
                     />
                     <div class="block-background__overlay block-background__overlay--fixed"></div>
@@ -127,17 +127,17 @@ pub fn ContactPage() -> impl IntoView {
                 <div class="block-layout-container">
                     <div class="hero-layout">
                         <div class="hero-title">
-                            <h1 class="text-white">"Contact us"</h1>
+                            <h1 class="text-white">"Get in Touch"</h1>
                         </div>
 
                         <div class="hero-subtitle">
-                            <h3 class="text-white">"You have feedback, ideas, or questions?"</h3>
-                            <p class="text-white" style="margin-top: 1rem;">
-                                "We are excited to hear from you. Feel free to send us a message and we will come back to you as soon as possible."
+                            <h3 class="text-white">"Let's collaborate on something great"</h3>
+                            <p class="text-white section-spacing">
+                                "Whether you have a project in mind, want to discuss technology, or just want to say hello — I'd love to hear from you."
                             </p>
                         </div>
 
-                        <div class="contact-form-container" style="margin-top: 3rem;">
+                        <div class="contact-form-container section-spacing-xl">
                             <form class="form contact-form" on:submit=on_submit>
                                 <div class="form__control">
                                     // Email field

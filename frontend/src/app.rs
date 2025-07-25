@@ -2,7 +2,7 @@ use leptos::*;
 use leptos_router::*;
 
 use crate::components::{Footer, Header};
-use crate::pages::{AboutPage, ContactPage, HomePage, ProjectsPage, SupportPage};
+use crate::pages::{AboutPage, ContactPage, HomePage, ProjectsPage};
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -14,7 +14,6 @@ pub fn App() -> impl IntoView {
                     <Route path="/" view=HomePage/>
                     <Route path="/about" view=AboutPage/>
                     <Route path="/projects" view=ProjectsPage/>
-                    <Route path="/support" view=SupportPage/>
                     <Route path="/contact" view=ContactPage/>
                 </Routes>
             </main>

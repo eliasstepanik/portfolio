@@ -1,12 +1,10 @@
-version: '3.9'
-
 services:
   postgres:
     image: postgres:16-alpine
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: open_freedom
+      POSTGRES_DB: portfolio
     ports:
       - "5432:5432"
     volumes:
@@ -23,7 +21,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/open_freedom
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/portfolio
     ports:
       - "3000:3000"
     volumes:

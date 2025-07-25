@@ -77,15 +77,21 @@ pub fn ProjectsPage() -> impl IntoView {
                     </div>
 
                     // Language Filter
-                    <div class="filter-container" style="margin-bottom: 30px; text-align: center;">
+                    <div class="filter-container">
                         {languages.iter().map(|&lang| {
                             view! {
                                 <button
-                                    class="filter-button"
-                                    class:active=move || {
-                                        let current = language_filter.get();
-                                        (lang == "All" && current.is_none()) ||
-                                        current.as_deref() == Some(lang)
+                                    class=move || {
+                                        let active = {
+                                            let current = language_filter.get();
+                                            (lang == "All" && current.is_none()) ||
+                                            current.as_deref() == Some(lang)
+                                        };
+                                        if active {
+                                            "filter-button filter-button--active"
+                                        } else {
+                                            "filter-button"
+                                        }
                                     }
                                     on:click=move |_| {
                                         if lang == "All" {
@@ -94,9 +100,6 @@ pub fn ProjectsPage() -> impl IntoView {
                                             set_language_filter.set(Some(lang.to_string()));
                                         }
                                     }
-                                    style="margin: 0 5px; padding: 8px 16px; border: 2px solid #333;
-                                           background: transparent; cursor: pointer; border-radius: 20px;
-                                           transition: all 0.3s ease;"
                                 >
                                     {lang}
                                 </button>
@@ -105,8 +108,8 @@ pub fn ProjectsPage() -> impl IntoView {
                     </div>
 
                     <Suspense fallback=move || view! {
-                        <div style="text-align: center; padding: 40px;">
-                            <p style="font-size: 1.2rem; color: #666;">"Loading projects..."</p>
+                        <div class="loading-message">
+                            <p class="loading-text">"Loading projects..."</p>
                         </div>
                     }>
                         {move || {
@@ -119,59 +122,52 @@ pub fn ProjectsPage() -> impl IntoView {
                                             children=move |project| view! {
                                                 <div class="project-card philosophy-item">
                                                     {project.image_url.as_ref().map(|url| view! {
-                                                        <div class="project-image" style="margin-bottom: 20px;">
+                                                        <div class="project-image">
                                                             <img
                                                                 src=url.clone()
                                                                 alt=project.name.clone()
-                                                                style="width: 100%; height: 200px; object-fit: cover;
-                                                                       border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"
                                                             />
                                                         </div>
                                                     })}
 
-                                                    <div class="project-header" style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
-                                                        <h4 style="margin: 0;">{project.name.clone()}</h4>
+                                                    <div class="project-header">
+                                                        <h4>{project.name.clone()}</h4>
                                                         {project.featured.then(|| view! {
-                                                            <span class="featured-badge" style="background: #ff6b6b; color: white;
-                                                                  padding: 4px 12px; border-radius: 12px; font-size: 0.8rem;">
+                                                            <span class="featured-badge">
                                                                 "Featured"
                                                             </span>
                                                         })}
                                                     </div>
 
-                                                    <p style="margin-bottom: 20px; line-height: 1.6;">
+                                                    <p class="project-description">
                                                         {project.description.clone()}
                                                     </p>
 
-                                                    <div class="tech-stack" style="margin-bottom: 20px;">
+                                                    <div class="tech-stack">
                                                         {project.technologies.iter().map(|tech| view! {
-                                                            <span class="tech-badge" style="display: inline-block; background: #f0f0f0;
-                                                                  padding: 4px 10px; margin: 2px; border-radius: 15px; font-size: 0.85rem;">
+                                                            <span class="tech-badge">
                                                                 {tech}
                                                             </span>
                                                         }).collect_view()}
                                                     </div>
 
-                                                    <div class="project-stats" style="display: flex; justify-content: space-between;
-                                                         align-items: center; margin-bottom: 20px; color: #666;">
-                                                        <span style="display: flex; align-items: center;">
+                                                    <div class="project-stats">
+                                                        <span>
                                                             "⭐ " {project.stars_count}
                                                         </span>
                                                         <span>{project.primary_language.clone()}</span>
                                                     </div>
 
-                                                    <div class="project-links" style="display: flex; gap: 10px;">
+                                                    <div class="project-links">
                                                         <a href=project.github_url.clone()
                                                            target="_blank"
-                                                           class="grid-button grid-button--secondary"
-                                                           style="flex: 1; text-align: center;">
+                                                           class="grid-button grid-button--secondary">
                                                             "View on GitHub"
                                                         </a>
                                                         {project.demo_url.as_ref().map(|url| view! {
                                                             <a href=url.clone()
                                                                target="_blank"
-                                                               class="grid-button grid-button--primary"
-                                                               style="flex: 1; text-align: center;">
+                                                               class="grid-button grid-button--primary">
                                                                 "Live Demo"
                                                             </a>
                                                         })}
@@ -182,9 +178,9 @@ pub fn ProjectsPage() -> impl IntoView {
                                     </div>
                                 },
                                 Err(e) => view! {
-                                    <div style="text-align: center; padding: 40px;">
-                                        <p style="font-size: 1.2rem; color: #d32f2f;">"Error loading projects"</p>
-                                        <p style="color: #666;">{e.to_string()}</p>
+                                    <div class="error-message">
+                                        <p class="error-text">"Error loading projects"</p>
+                                        <p class="error-details">{e.to_string()}</p>
                                     </div>
                                 }
                             })

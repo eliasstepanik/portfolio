@@ -29,7 +29,7 @@ serve-prod: build-web
 # Clean build artifacts
 clean:
     cargo clean
-    rm -rf frontend/dist
+    rm -rf frontend/dist || true
 
 # Run backend in development mode
 backend-dev:
