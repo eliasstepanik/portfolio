@@ -39,7 +39,23 @@ pub fn ProjectsPage() -> impl IntoView {
         |filter| async move { fetch_projects(filter).await },
     );
 
-    let languages = ["All", "Rust", "C#", "TypeScript", "Python"];
+    // Dynamic languages based on actual projects
+    let languages = create_resource(
+        || (),
+        |_| async move {
+            fetch_projects(None).await.map(|projects| {
+                let mut langs: Vec<String> = projects
+                    .iter()
+                    .map(|p| p.primary_language.clone())
+                    .collect::<std::collections::HashSet<_>>()
+                    .into_iter()
+                    .collect();
+                langs.sort();
+                langs.insert(0, "All".to_string());
+                langs
+            }).unwrap_or_else(|_| vec!["All".to_string()])
+        }
+    );
 
     view! {
         <div class="page projects-page">
@@ -78,33 +94,49 @@ pub fn ProjectsPage() -> impl IntoView {
 
                     // Language Filter
                     <div class="filter-container">
-                        {languages.iter().map(|&lang| {
-                            view! {
-                                <button
-                                    class=move || {
-                                        let active = {
-                                            let current = language_filter.get();
-                                            (lang == "All" && current.is_none()) ||
-                                            current.as_deref() == Some(lang)
-                                        };
-                                        if active {
-                                            "filter-button filter-button--active"
-                                        } else {
-                                            "filter-button"
-                                        }
-                                    }
-                                    on:click=move |_| {
-                                        if lang == "All" {
-                                            set_language_filter.set(None);
-                                        } else {
-                                            set_language_filter.set(Some(lang.to_string()));
-                                        }
-                                    }
-                                >
-                                    {lang}
-                                </button>
-                            }
-                        }).collect_view()}
+                        <Suspense fallback=move || view! {
+                            <div class="filter-loading">
+                                <button class="filter-button filter-button--active">"All"</button>
+                            </div>
+                        }>
+                            {move || {
+                                languages.get().map(|langs| view! {
+                                    <div class="filter-buttons">
+                                        {langs.iter().map(|lang| {
+                                            let lang_clone = lang.clone();
+                                            let lang_for_class = lang_clone.clone();
+                                            let lang_for_click = lang_clone.clone();
+                                            let lang_for_text = lang_clone.clone();
+                                            view! {
+                                                <button
+                                                    class=move || {
+                                                        let active = {
+                                                            let current = language_filter.get();
+                                                            (lang_for_class == "All" && current.is_none()) ||
+                                                            current.as_deref() == Some(&lang_for_class)
+                                                        };
+                                                        if active {
+                                                            "filter-button filter-button--active"
+                                                        } else {
+                                                            "filter-button"
+                                                        }
+                                                    }
+                                                    on:click=move |_| {
+                                                        if lang_for_click == "All" {
+                                                            set_language_filter.set(None);
+                                                        } else {
+                                                            set_language_filter.set(Some(lang_for_click.clone()));
+                                                        }
+                                                    }
+                                                >
+                                                    {lang_for_text}
+                                                </button>
+                                            }
+                                        }).collect_view()}
+                                    </div>
+                                })
+                            }}
+                        </Suspense>
                     </div>
 
                     <Suspense fallback=move || view! {
