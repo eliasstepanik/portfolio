@@ -1,3 +1,3 @@
-pub mod audiobook;
+pub mod project;
 
-pub use audiobook::AudioBook;
+pub use project::Project;
