@@ -1,0 +1,3 @@
+-- This migration removes duplicates, so down migration would need to restore them
+-- However, since the duplicates were errors, we'll leave this as a no-op
+-- The original seeding can be done by re-running the previous migrations
