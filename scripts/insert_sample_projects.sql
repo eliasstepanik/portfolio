@@ -22,10 +22,10 @@ VALUES
      NULL),
      
     ('voxel-simulation',
-     'A voxel-based simulation engine built with Rust',
+     'Experimental 3D world built with Bevy game engine featuring streaming voxel terrain, high precision coordinates, planet generation, and debug tools',
      'https://github.com/eliasstepanik/voxel-simulation',
      NULL,
-     ARRAY['Rust', 'WebGPU', 'Graphics'],
+     ARRAY['Rust', 'Bevy', '3D Graphics', 'Voxels'],
      'Rust',
      12,
      true,
